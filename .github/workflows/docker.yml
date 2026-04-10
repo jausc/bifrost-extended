@@ -3,9 +3,10 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 3 * * *"  # täglich um 03:00 UTC
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Log in to GHCR
@@ -26,15 +27,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata
+      - name: Extract Docker metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
+            type=ref,event=branch
+            type=ref,event=tag
             type=raw,value=latest
 
-      - name: Build and push
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
