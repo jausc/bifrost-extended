@@ -2,18 +2,14 @@ FROM maximhq/bifrost:v1.4.3
 
 USER root
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     curl \
     ca-certificates \
     bash \
-    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-    && apt-get install -y \
-        nodejs \
-        python3 \
-        python3-pip \
-        python3-venv \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    nodejs \
+    npm \
+    python3 \
+    py3-pip
 
 # uv installieren
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
