@@ -1,15 +1,12 @@
 name: Build and Push Docker Image
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   push:
     branches: [ "main" ]
     tags: [ "v*" ]
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"  # täglich um 03:00 UTC
+    - cron: "0 3 * * *"
 
 jobs:
   build:
@@ -25,12 +22,13 @@ jobs:
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
+
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract Docker metadata (tags, labels)
+      - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
