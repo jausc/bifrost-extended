@@ -1,11 +1,11 @@
-FROM maximhq/bifrost:latest
+FROM maximhq/bifrost:v1.4.3
 
 USER root
 
-# System dependencies + Node + Python
 RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
+    bash \
     && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y \
         nodejs \
@@ -15,14 +15,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# uv installieren (offizieller Installer)
+# uv installieren
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# uv in PATH verfügbar machen
 ENV PATH="/root/.local/bin:${PATH}"
 
-# optional: prüfen (kannst du später entfernen)
-RUN uv --version && node --version && python3 --version
-
-# optionales working dir
 WORKDIR /app
