@@ -1,6 +1,6 @@
 **Bifrost Extended Docker Image**
 
-This repository provides a custom Docker image based on the Bifrost image maximhq/bifrost:v1.4.3. It extends the base image by adding commonly used development tools for working with JavaScript and Python.
+This repository provides a custom Docker image based on the Bifrost image maximhq/bifrost. It extends the base image by adding commonly used development tools for working with JavaScript and Python.
 
 The image includes curl and certificate packages for network communication, bash as a shell, Node.js with npm for JavaScript development, and Python 3 with pip for Python environments. In addition, the modern Python package manager “uv” is installed to enable faster and more efficient dependency management.
 
