@@ -1,4 +1,4 @@
-FROM maximhq/bifrost:v1.5.0
+FROM maximhq/bifrost:v1.5.1
 
 USER root
 
