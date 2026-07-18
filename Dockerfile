@@ -9,10 +9,7 @@ RUN apk add --no-cache \
     nodejs \
     npm \
     python3 \
-    py3-pip \
-    tesseract-ocr \
-    tesseract-ocr-data-eng \
-    tesseract-ocr-data-deu
+    py3-pip
 
 # uv installieren
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
