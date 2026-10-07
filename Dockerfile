@@ -1,4 +1,4 @@
-FROM maximhq/bifrost:v2.2.5
+FROM maximhq/bifrost:v2.2.6
 USER root
 
 RUN apk add --no-cache \
